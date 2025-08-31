@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionX.AI Tech Fest 2025 Invitation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --bg-color: #000;
+            --main-glow: #0ff;
+            --secondary-glow: #f0f;
+            --accent-color: #ff0;
+            --text-color: #fff;
+            --fade-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #060014, var(--bg-color));
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        /* --- Particle Network --- */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.8;
+        }
+
+        /* --- Robots Background --- */
+        .robots-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .robot {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.3;
+            filter: drop-shadow(0 0 15px var(--main-glow));
+            animation: moveRobot 25s linear infinite;
+        }
+      
+        @keyframes moveRobot {
+            0% { transform: translateX(-100px) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 100px)) rotate(360deg); }
+        }
+
+        /* --- Loader Content --- */
+        .loader-container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Stylish Logo Loader --- */
+        .logo-loader {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* BIGGER IMAGE: bumped from 80% -> 92% */
+        .logo-loader .logo-image {
+            width: 92%;
+            height: 92%;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 50px var(--main-glow), 0 0 100px var(--secondary-glow);
+            z-index: 4;
+            animation: pulseGlow 3s infinite alternate, zoomInOut 4s ease-in-out infinite;
+        }
+
+        /* Outer Spinner */
+        .logo-loader .spinner-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--accent-color);
+            border-left-color: var(--secondary-glow);
+            animation: spin 2s linear infinite;
+            z-index: 3;
+        }
+
+        /* Inner Spinner */
+        .logo-loader .spinner-inner {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-right-color: var(--main-glow);
+            border-bottom-color: var(--accent-color);
+            animation: spinReverse 2.5s linear infinite;
+            z-index: 2;
+        }
+
+        /* Slider effect - simulated with rotating lines */
+        .logo-loader .slider-line-1,
+        .logo-loader .slider-line-2 {
+            position: absolute;
+            width: 120%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--main-glow), transparent);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .logo-loader .slider-line-1 {
+            animation: slideRotate1 5s linear infinite;
+        }
+
+        .logo-loader .slider-line-2 {
+            animation: slideRotate2 5s linear infinite;
+        }
+
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes slideRotate1 {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideRotate2 {
+            0% { transform: rotate(90deg); }
+            100% { transform: rotate(450deg); }
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 40px var(--main-glow), 0 0 80px var(--secondary-glow); }
+            to { box-shadow: 0 0 60px var(--main-glow), 0 0 120px var(--secondary-glow); }
+        }
+        
+        /* --- Progress Text --- */
+        .progress-text {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: var(--main-glow);
+            text-shadow: 0 0 15px var(--main-glow), 0 0 30px var(--secondary-glow);
+            animation: glitchPulse 1s infinite alternate;
+        }
+        @keyframes glitchPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- Invitation Card --- */
+        .invitation {
+            display: none;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 50px;
+            border-radius: 40px;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.6);
+            animation: zoomIn 1s ease forwards;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 60px var(--main-glow), 0 0 120px var(--secondary-glow);
+            max-width: 800px;
+            width: 90%;
+        }
+        @keyframes zoomIn {
+            to { transform: scale(1); opacity: 1; }
+        }
+        .invitation h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 44px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--main-glow), var(--secondary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glowText 2s infinite alternate;
+        }
+        .invitation h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px var(--accent-color);
+            animation: pulse 1.5s infinite alternate;
+        }
+        .invitation p {
+            font-size: 20px;
+            color: #ccc;
+            margin: 10px 0;
+        }
+        .highlight {
+            color: var(--main-glow);
+            font-weight: bold;
+            text-shadow: 0 0 15px var(--main-glow), 0 0 30px var(--secondary-glow);
+        }
+
+        /* --- Neon Border Flicker --- */
+        .invitation::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 40px;
+            padding: 3px;
+            background: linear-gradient(90deg, var(--main-glow), var(--secondary-glow), var(--main-glow));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGlow 6s linear infinite, borderFlicker 2s infinite alternate;
+        }
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        @keyframes borderFlicker {
+            0%, 100% { opacity: 1; }
+            5%, 95% { opacity: 0.8; }
+            10%, 90% { opacity: 1; }
+            15%, 85% { opacity: 0.6; }
+            20%, 80% { opacity: 1; }
+        }
+
+        /* --- Loading and Page transition --- */
+        @keyframes fadeOut {
+            to { opacity: 0; transform: scale(1.1); }
+        }
+        
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .logo-loader {
+                width: 200px;
+                height: 200px;
+            }
+            /* BIGGER IMAGE on mobile too */
+            .logo-loader .logo-image {
+                width: 94%;
+                height: 94%;
+            }
+            .progress-text {
+                font-size: 24px;
+                margin-top: 15px;
+            }
+            .invitation {
+                padding: 30px;
+                border-radius: 25px;
+            }
+            .invitation h1 {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+            .invitation h2 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            .invitation p {
+                font-size: 16px;
+                margin: 8px 0;
+            }
+            .highlight {
+                font-size: 18px;
+            }
+            .invitation::before {
+                border-radius: 25px;
+            }
+            .robot {
+                width: 90px;
+                height: 90px;
+                opacity: 0.2;
+            }
+            @keyframes moveRobot {
+                0% { transform: translateX(-90px) rotate(0deg); }
+                100% { transform: translateX(calc(100vw + 90px)) rotate(360deg); }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-loader {
+                width: 150px;
+                height: 150px;
+            }
+            /* BIGGER IMAGE on small screens */
+            .logo-loader .logo-image {
+                width: 96%;
+                height: 96%;
+            }
+            .progress-text {
+                font-size: 20px;
+                margin-top: 10px;
+            }
+            .invitation {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            .invitation h1 {
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+            .invitation h2 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            .invitation p {
+                font-size: 14px;
+                margin: 6px 0;
+            }
+            .highlight {
+                font-size: 16px;
+            }
+            .invitation::before {
+                border-radius: 15px;
+            }
+            .robot {
+                width: 70px;
+                height: 70px;
+                opacity: 0.15;
+            }
+            @keyframes moveRobot {
+                0% { transform: translateX(-70px) rotate(0deg); }
+                100% { transform: translateX(calc(100vw + 70px)) rotate(360deg); }
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <div class="robots-container">
+        <div class="robot robot-1"></div>
+        <div class="robot robot-2"></div>
+        <div class="robot robot-3"></div>
+    </div>
+
+    <div class="loader-container" id="loader">
+        <div class="logo-loader">
+            <img src="m.jpg" alt="VisionX.AI Logo" class="logo-image">
+            <div class="spinner-outer"></div>
+            <div class="spinner-inner"></div>
+            <div class="slider-line-1"></div>
+            <div class="slider-line-2"></div>
+        </div>
+        <div class="progress-text" id="progress">0%</div>
+    </div>
+
+    <div class="invitation" id="invitation">
+        <h1> VISIONX.AI 2025 </h1>
+        <h2>An Exclusive Invitation for Esteemed Faculty</h2>
+        <p class="highlight">Dear Faculty,</p>
+        <p><strong>It is with great honor that we invite you to the VISIONX AI 2025</strong>.</p>
+        <p>Organized by the:</p> 
+        <P>Department of Artificial Intelligence</p>
+        <p class="highlight"><strong> 📅 <strong>Date:</strong> September 4, 2025</strong></p>
+        <p>📍 <strong>Venue:</strong> Aditya Degree College (Co-Ed), Gajuwaka</p>
+        <p>Join us to explore the future of innovation in:</p>
+        <p class="highlight">Artificial Intelligence • Machine Learning • Robotics</p>
+        <p>This event promises:</p>
+        <p>✨ Inspiring Talks • 🚀 Tech Showcases • 🤖 Hackathons</p>
+        <p>Your presence will illuminate this grand occasion.</p>
+        <p>With warm regards,<br>Team VISIONX AI</p>
+    </div>
+
+    <script>
+        // ===== Background Speech (Speech Synthesis) =====
+        const speechText = "Welcome to VisionX AI"; // what to say
+
+        function speakOnce(text) {
+            if (!('speechSynthesis' in window)) return; // unsupported
+            const utter = new SpeechSynthesisUtterance(text);
+            // Optional fine-tuning
+            utter.volume = 1;   // 0.0 - 1.0
+            utter.rate = 1;     // 0.1 - 10
+            utter.pitch = 1;    // 0 - 2
+
+            // Try to choose an English voice if available
+            const voices = window.speechSynthesis.getVoices();
+            const preferred = voices.find(v => /en-?IN|en-?US|en-?GB/i.test(v.lang));
+            if (preferred) utter.voice = preferred;
+
+            // Avoid overlapping speeches
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utter);
+        }
+
+        // Speak on load (some browsers may require user interaction)
+        window.addEventListener('load', () => {
+            // delay slightly to allow voices to load on some browsers
+            setTimeout(() => speakOnce(speechText), 200);
+        });
+
+        // Also speak again when invitation shows (nice touch)
+        function speakOnInvitationShow() {
+            speakOnce(speechText);
+        }
+
+        // ===== Progress counter & transition =====
+        let progress = 0;
+        const progressEl = document.getElementById("progress");
+        const loader = document.getElementById("loader");
+        const invitation = document.getElementById("invitation");
+
+        const interval = setInterval(() => {
+            if (progress < 100) {
+                progress++;
+                progressEl.textContent = progress + "%";
+            } else {
+                clearInterval(interval);
+                loader.style.animation = 'fadeOut 1s forwards';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    invitation.style.display = 'block';
+                    speakOnInvitationShow();
+                }, 1000); // Wait for fade out animation to finish
+            }
+        }, 30); // Faster progress
+
+        // ===== Particle network system =====
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        let particlesArray = [];
+        const colors = ["#0ff", "#ff00d9", "#ffffff", "#b15cff", "#ff0"];
+        const maxDistance = 150;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.baseSpeed = Math.random() * 0.5 + 0.1;
+                this.speedX = (Math.random() - 0.5) * this.baseSpeed;
+                this.speedY = (Math.random() - 0.5) * this.baseSpeed;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random() * 0.5 + 0.5;
+            }
+
+            update() {
+                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                    this.speedX = -this.speedX;
+                }
+                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                    this.speedY = -this.speedY;
+                }
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let dx = particlesArray[a].x - particlesArray[b].x;
+                    let dy = particlesArray[a].y - particlesArray[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        ctx.strokeStyle = "rgba(255,255,255," + (1 - distance / maxDistance) + ")";
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            connectParticles();
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+    </script>
+</body>
+</html>
